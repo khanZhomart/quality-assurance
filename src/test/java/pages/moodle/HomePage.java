@@ -1,5 +1,6 @@
 package pages.moodle;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,11 @@ public class HomePage extends Pages {
 
     public HomePage(final WebDriver driver) {
         super(driver);
+    }
+
+    public void logout() {
+        profileMenu.click();
+        driver.findElement(By.xpath("//*[@id=\"action-menu-1-menu\"]/a[6]")).click();
     }
 
     public boolean authorized() {

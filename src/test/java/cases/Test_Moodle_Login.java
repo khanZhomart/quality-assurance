@@ -1,5 +1,6 @@
 package cases;
 
+import constants.Drivers;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,14 +22,13 @@ public class Test_Moodle_Login {
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\jtalg\\IdeaProjects\\qa2\\src\\test\\resources\\chromedriver.exe");
+        System.setProperty(Drivers.PACKAGE, Drivers.PATH);
         driver = new ChromeDriver();
         driver.get(BASE_URL);
     }
 
     @AfterClass
     public static void tearDown() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3L));
         driver.close();
     }
 
@@ -37,5 +37,7 @@ public class Test_Moodle_Login {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = loginPage.login(USERNAME, PASSWORD);
         assertTrue(homePage.authorized());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3L));
+        homePage.logout();
     }
 }

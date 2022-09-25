@@ -1,5 +1,6 @@
 package cases;
 
+import constants.Drivers;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,14 +16,17 @@ import static org.junit.Assert.assertTrue;
 
 public class Test_Google_Search {
     private static WebDriver driver;
+    private static SearchPage searchPage;
+    private static ResultPage resultPage;
 
     private static final String BASE_URL = "https://google.kz/";
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\jtalg\\IdeaProjects\\qa2\\src\\test\\resources\\chromedriver.exe");
+        System.setProperty(Drivers.PACKAGE, Drivers.PATH);
         driver = new ChromeDriver();
         driver.get(BASE_URL);
+        searchPage = new SearchPage(driver);
     }
 
     @AfterClass
@@ -34,7 +38,6 @@ public class Test_Google_Search {
     @Test
     public void testSearch() {
         String expected = "aitu";
-        SearchPage searchPage = new SearchPage(driver);
         ResultPage resultPage = searchPage.search(expected);
         assertTrue(resultPage.title().contains(expected));
     }
