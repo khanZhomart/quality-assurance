@@ -40,10 +40,10 @@ public class Test_Dodo {
 
     @Test
     public void testCart() throws InterruptedException {
+        Thread.sleep(1000);
         WebElement element = driver.findElement(By.cssSelector("#react-app > nav > div > div.xlo7eb-3.dQDTpi > button"));
         element.click();
         Thread.sleep(1500);
-        element = driver.findElement(By.cssSelector("body > div:nth-child(12) > div > div.sc-1v5x861-1.iMYFrd > div > div > div:nth-child(1) > main"));
         assertNotNull(element);
     }
 
